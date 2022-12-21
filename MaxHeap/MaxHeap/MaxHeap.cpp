@@ -7,7 +7,7 @@ int MaxHeap::parent(int i) { return i >> 1; }
 
 int MaxHeap::left(int i) { return i << 1; }
 
-int MaxHeap::right(int i){ return (i << 1) + 1; }
+int MaxHeap::right(int i) { return (i << 1) + 1; }
 
 int MaxHeap::extractMax() {
 	if (heap_size < 1) {
@@ -15,7 +15,7 @@ int MaxHeap::extractMax() {
 		return -1;
 	}
 	int max = arr[0];
-	arr[0] = arr[heap_size];
+	arr[0] = arr[heap_size-1];
 	heap_size--;
 	MaxHeapify(0);
 	return max;
@@ -25,14 +25,14 @@ void MaxHeap::MaxHeapify(int i) {
 	int l = left(i);
 	int r = right(i);
 	int largest;
-	if (l <= heap_size && arr[l] > arr[i]) {
+	if (l < heap_size && arr[l] > arr[i]) {
 		largest = l;
 	}
 	else {
 		largest = i;
 	}
 
-	if (r <= heap_size && arr[r] > arr[i]) {
+	if (r < heap_size && arr[r] > arr[i]) {
 		largest = r;
 	}
 	
@@ -46,6 +46,7 @@ int MaxHeap::getMax() {
 	return arr[0];
 }
 void MaxHeap::increaseKey(int i, int new_key) {
+	std::cout << "array" << arr[i] << std::endl;
 	if (new_key < arr[i]) {
 		std::cout << "New key cannot be smaller than existing key...\n";
 		return;
@@ -62,7 +63,6 @@ void MaxHeap::deletekey(int i) {
 		std::cout << "\nCannot delete key\n";
 		return;
 	}
-
 	increaseKey(i, INT_MAX);
 	extractMax();
 }

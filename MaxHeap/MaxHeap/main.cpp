@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "maxHeap.h"
+#include <queue>
 int main()
 {
     MaxHeap heap = MaxHeap(10);
@@ -15,6 +16,20 @@ int main()
     heap.print();
     heap.deletekey(4);
     heap.print();
+
+
+    std::priority_queue <int> pq;
+    pq.push(15);
+    pq.push(7);
+    pq.push(6);
+    pq.push(12);
+    pq.push(10);
+    pq.push(5);
+    std::cout << "-----\n";
+    while (!pq.empty()) {
+        std::cout << pq.top() << " ";
+        pq.pop();
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
